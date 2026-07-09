@@ -261,7 +261,7 @@ export default function Portfolio() {
               className="flex items-center"
             >
               <span className="text-lg font-bold tracking-wide bg-gradient-to-r from-white via-zinc-300 to-white bg-clip-text text-transparent">
-                VAISHNAVI.J
+                PN Bhavish
               </span>
             </motion.div>
 
@@ -389,7 +389,7 @@ export default function Portfolio() {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="block bg-gradient-to-r from-white via-zinc-200 to-white bg-clip-text text-transparent"
             >
-              Vaishnavi J Acharya.
+              PN Bhavish.
             </motion.span>
             <motion.span
               initial={{ opacity: 0, y: 30 }}
@@ -600,7 +600,7 @@ export default function Portfolio() {
             <h3 className="text-2xl font-bold mb-8">Let's Build Something Amazing Together</h3>
             <div className="flex gap-4 justify-center flex-wrap">
               <motion.a
-                href="https://www.linkedin.com/in/vaishnavi-acharya-856245293/"
+                href="https://www.linkedin.com/in/p-n-bhavish-300233293/"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05, y: -4 }}
@@ -610,7 +610,7 @@ export default function Portfolio() {
                 LinkedIn
               </motion.a>
               <motion.a
-                href="https://github.com/VaishnaviAcharya06"
+                href="https://github.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05, y: -4 }}
@@ -620,7 +620,7 @@ export default function Portfolio() {
                 GitHub
               </motion.a>
               <motion.a
-                href="mailto:vaishnaviacharya44@gmail.com"
+                href="mailto:pnbhavish@gmail.com"
                 whileHover={{ scale: 1.05, y: -4 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-black transition-all duration-300"
@@ -636,16 +636,16 @@ export default function Portfolio() {
       <footer className="bg-zinc-950 border-t border-zinc-800 py-8 px-6 lg:px-12">
         <div className="max-w-6xl mx-auto text-center">
           <p className="text-zinc-500 text-sm mb-4">
-            © 2024 Vaishnavi J Acharya. All rights reserved.
+            © 2024 PN Bhavish. All rights reserved.
           </p>
           <div className="flex gap-6 justify-center">
-            <a href="https://www.linkedin.com/in/vaishnavi-acharya-856245293/" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-white transition-colors font-semibold">
+            <a href="https://www.linkedin.com/in/p-n-bhavish-300233293/" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-white transition-colors font-semibold">
               LinkedIn
             </a>
-            <a href="https://github.com/VaishnaviAcharya06" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-white transition-colors font-semibold">
+            <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-white transition-colors font-semibold">
               GitHub
             </a>
-            <a href="mailto:vaishnaviacharya44@gmail.com" className="text-zinc-500 hover:text-white transition-colors font-semibold">
+            <a href="mailto:pnbhavish@gmail.com" className="text-zinc-500 hover:text-white transition-colors font-semibold">
               Email
             </a>
           </div>
