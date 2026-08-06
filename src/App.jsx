@@ -3,41 +3,47 @@ import { Menu, X, ChevronDown, ExternalLink, Code2, Sparkles, Heart, Brain, Zap,
 import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
 import { useScrollAnimation } from './useScrollAnimation';
 
-/* ━━━ Floating Particles (light theme) ━━━━━━━━ */
-const FloatingParticles = () => {
-  const particles = Array.from({ length: 25 });
-  const colors = ['bg-gray-400', 'bg-accent/40', 'bg-gray-300', 'bg-accent/30'];
+const _particleCache = Array.from({ length: 12 }).map((_, i) => {
+  const w = typeof window !== 'undefined' ? window.innerWidth : 1200;
+  const h = typeof window !== 'undefined' ? window.innerHeight : 800;
+  return {
+    left: (i * 83 + 17) % 100,
+    top: (i * 47 + 9) % 100,
+    size: 2 + (i % 4),
+    duration: 12 + (i % 7) * 1.5,
+    delay: (i * 0.9) % 6,
+    opacity: 0.2 + ((i % 3) * 0.1),
+    colorClass: i % 4 === 0 || i % 4 === 3 ? 'bg-accent/30' : 'bg-gray-400/50',
+  };
+});
 
-  return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-      {particles.map((_, i) => (
-        <motion.div
-          key={i}
-          className={`absolute rounded-full ${colors[i % colors.length]}`}
-          style={{
-            width: Math.random() * 4 + 2,
-            height: Math.random() * 4 + 2,
-          }}
-          initial={{
-            x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
-            y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
-            opacity: 0.3,
-          }}
-          animate={{
-            y: [null, Math.random() * -150 - 60],
-            x: [null, Math.random() * 60 - 30],
-            opacity: [0.2, 0.5, 0.2],
-          }}
-          transition={{
-            duration: Math.random() * 12 + 10,
-            repeat: Infinity,
-            ease: 'linear',
-          }}
-        />
-      ))}
-    </div>
-  );
-};
+const FloatingParticles = () => (
+  <div className="fixed inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
+    <style>{`
+      @keyframes _pFloat {
+        0% { transform: translate3d(0, 0, 0); opacity: 0.25; }
+        50% { transform: translate3d(-12px, -80px, 0); opacity: 0.45; }
+        100% { transform: translate3d(0, 0, 0); opacity: 0.25; }
+      }
+      ._p { will-change: transform, opacity; animation: _pFloat linear infinite; }
+    `}</style>
+    {_particleCache.map((p, i) => (
+      <div
+        key={i}
+        className={`_p absolute rounded-full ${p.colorClass}`}
+        style={{
+          left: `${p.left}%`,
+          top: `${p.top}%`,
+          width: p.size,
+          height: p.size,
+          animationDuration: `${p.duration}s`,
+          animationDelay: `${p.delay}s`,
+          opacity: p.opacity,
+        }}
+      />
+    ))}
+  </div>
+);
 
 /* ━━━ Magnetic Button ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 const MagneticButton = ({ children, onClick, className = '', primary = false }) => {
@@ -222,6 +228,7 @@ const SectionHeading = ({ title, subtitle, isVisible }) => (
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [isNavScrolled, setIsNavScrolled] = useState(false);
   const { scrollY } = useScroll();
 
   const [aboutRef, isAboutVisible] = useScrollAnimation();
@@ -232,6 +239,23 @@ export default function Portfolio() {
   const heroOpacity = useTransform(scrollY, [0, 500], [1, 0]);
   const heroScale = useTransform(scrollY, [0, 500], [1, 0.92]);
   const heroY = useTransform(scrollY, [0, 500], [0, 80]);
+  const progressX = useTransform(scrollY, [0, 3000], [0, 1]);
+
+  useEffect(() => {
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setIsNavScrolled(window.scrollY > 80);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const projects = [
     {
@@ -274,7 +298,6 @@ export default function Portfolio() {
       <FloatingParticles />
 
       {/* ━━━ NAVIGATION ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      {/* ━━━ NAVIGATION ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <motion.nav
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -284,26 +307,26 @@ export default function Portfolio() {
         {/* Scroll progress bar */}
         <motion.div
           className="absolute top-0 left-0 z-[60] h-[2px] bg-gradient-to-r from-accent via-accent-light to-gray-900 origin-left"
-          style={{ scaleX: useTransform(scrollY, [0, 3000], [0, 1]) }}
+          style={{ scaleX: progressX }}
         />
 
-        <motion.div
-          className="w-full border-b"
+        <div
+          className={
+            'w-full border-b transition-all duration-300 ease-out backdrop-blur-xl saturate-180 ' +
+            (isNavScrolled
+              ? 'bg-white/95 border-accent/25'
+              : 'bg-white/70 border-gray-200/60')
+          }
           style={{
-            backgroundColor: useTransform(scrollY, [0, 100], ['rgba(255,255,255,0.75)', 'rgba(255,255,255,0.96)']),
-            backdropFilter: 'blur(20px) saturate(180%)',
-            WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-            borderColor: useTransform(scrollY, [0, 100], ['rgba(229, 231, 235, 0.6)', 'rgba(232, 119, 46, 0.25)']),
-            boxShadow: useTransform(scrollY, [0, 100], [
-              '0 0px 0px rgba(0,0,0,0)',
-              '0 12px 30px -15px rgba(232, 119, 46, 0.25), 0 4px 12px -6px rgba(0, 0, 0, 0.06)'
-            ])
+            boxShadow: isNavScrolled
+              ? '0 12px 30px -15px rgba(232, 119, 46, 0.25), 0 4px 12px -6px rgba(0, 0, 0, 0.06)'
+              : '0 0px 0px rgba(0,0,0,0)',
           }}
         >
           <div className="max-w-7xl mx-auto px-6 lg:px-12">
-            <motion.div
-              className="flex justify-between items-center w-full"
-              style={{ height: useTransform(scrollY, [0, 100], ['64px', '56px']) }}
+            <div
+              className="flex justify-between items-center w-full transition-all duration-300 ease-out"
+              style={{ height: isNavScrolled ? '56px' : '64px' }}
             >
               {/* ━━━ LOGO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
               <motion.button
@@ -318,17 +341,15 @@ export default function Portfolio() {
                   whileHover={{ rotate: [0, -8, 8, 0] }}
                   transition={{ duration: 0.5 }}
                 >
-                  {/* Outer glow ring */}
-                  <motion.div
-                    className="absolute inset-0 rounded-full"
-                    animate={{
-                      boxShadow: [
-                        '0 0 0 0px rgba(232, 119, 46, 0.35)',
-                        '0 0 0 8px rgba(232, 119, 46, 0)',
-                      ]
+                  {/* Outer glow ring — cheap transform-based pulse */}
+                  <div
+                    className="absolute inset-0 rounded-full border-2 border-accent/40"
+                    style={{
+                      animation: '_logoRing 2.8s ease-out infinite',
+                      willChange: 'transform, opacity',
                     }}
-                    transition={{ duration: 2.8, repeat: Infinity, ease: 'easeOut' }}
                   />
+                  <style>{`@keyframes _logoRing{0%{opacity:.7;transform:scale(1)}100%{opacity:0;transform:scale(1.6)}}`}</style>
                   {/* Gradient circle badge */}
                   <div className="relative w-10 h-10 rounded-full bg-gradient-to-br from-accent via-accent-dark to-gray-900 flex items-center justify-center shadow-md overflow-hidden">
                     {/* Inner shine */}
@@ -341,7 +362,7 @@ export default function Portfolio() {
 
                 {/* Name text */}
                 <div className="flex flex-col items-start leading-none">
-                  <span className="font-black font-display tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-gray-800 to-accent-dark text-base md:text-lg group-hover:from-accent-dark group-hover:via-gray-900 group-hover:to-gray-900 transition-all duration-500">
+                  <span className="font-black font-display tracking-wide text-base md:text-lg text-gray-900 group-hover:text-accent-dark transition-colors duration-300">
                     Spandana Naik
                   </span>
                   <span className="hidden sm:block text-[10px] uppercase tracking-[0.18em] text-gray-400 font-semibold mt-1 group-hover:text-accent transition-colors duration-300">
@@ -402,9 +423,9 @@ export default function Portfolio() {
                   </div>
                 </motion.button>
               </div>
-            </motion.div>
+            </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* ━━━ MOBILE MENU ━━━━━━━━━━━━━━━━━━━━━━━ */}
         <AnimatePresence>
@@ -479,25 +500,28 @@ export default function Portfolio() {
           <div className="h-full w-full bg-[radial-gradient(circle,#000_1px,transparent_1px)] bg-[size:40px_40px]" />
         </div>
 
-        {/* Very subtle warm blobs */}
+        {/* Very subtle warm blobs — CSS-only, no scale to avoid repainting blur */}
         <div className="absolute inset-0 overflow-hidden">
-          <motion.div
-            className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-accent/[0.04] rounded-full blur-[120px]"
-            animate={{
-              x: [0, 60, 0],
-              y: [0, 40, 0],
-              scale: [1, 1.15, 1],
+          <style>{`
+            @keyframes _blobA { 0%,100% { transform: translate3d(0,0,0) } 50% { transform: translate3d(40px,24px,0) } }
+            @keyframes _blobB { 0%,100% { transform: translate3d(0,0,0) } 50% { transform: translate3d(-36px,-28px,0) } }
+            ._blob { will-change: transform; }
+          `}</style>
+          <div
+            className="_blob absolute top-1/4 right-1/4 w-[420px] h-[420px] rounded-full"
+            style={{
+              background: 'rgba(232, 119, 46, 0.05)',
+              filter: 'blur(80px)',
+              animation: '_blobA 14s ease-in-out infinite',
             }}
-            transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
           />
-          <motion.div
-            className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-gray-200/40 rounded-full blur-[120px]"
-            animate={{
-              x: [0, -50, 0],
-              y: [0, -40, 0],
-              scale: [1, 1.2, 1],
+          <div
+            className="_blob absolute bottom-1/4 left-1/4 w-[360px] h-[360px] rounded-full"
+            style={{
+              background: 'rgba(156, 163, 175, 0.25)',
+              filter: 'blur(80px)',
+              animation: '_blobB 16s ease-in-out infinite',
             }}
-            transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
           />
         </div>
 
@@ -613,37 +637,31 @@ export default function Portfolio() {
         ref={aboutRef}
         className="min-h-screen py-24 px-6 lg:px-12 flex items-center relative overflow-hidden bg-gray-50/50"
       >
-        {/* Animated warm blobs - Orange theme */}
+        {/* Animated warm blobs - Orange theme (CSS-only, 2 blobs, reduced blur) */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <motion.div
-            className="absolute top-[10%] -left-[10%] w-[450px] h-[450px] rounded-full blur-[120px] opacity-30"
-            style={{ background: 'linear-gradient(135deg, #E8772E 0%, #F5A623 100%)' }}
-            animate={{
-              x: [0, 80, 0],
-              y: [0, 60, 0],
-              scale: [1, 1.2, 1],
+          <style>{`
+            @keyframes _blob1 { 0%,100% { transform: translate3d(0,0,0) } 50% { transform: translate3d(50px,32px,0) } }
+            @keyframes _blob2 { 0%,100% { transform: translate3d(0,0,0) } 50% { transform: translate3d(-44px,-28px,0) } }
+          `}</style>
+          <div
+            className="absolute top-[10%] -left-[10%] w-[400px] h-[400px] rounded-full"
+            style={{
+              background: 'linear-gradient(135deg, #E8772E 0%, #F5A623 100%)',
+              opacity: 0.22,
+              filter: 'blur(80px)',
+              animation: '_blob1 18s ease-in-out infinite',
+              willChange: 'transform',
             }}
-            transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
           />
-          <motion.div
-            className="absolute bottom-[5%] -right-[10%] w-[500px] h-[500px] rounded-full blur-[130px] opacity-20"
-            style={{ background: 'linear-gradient(135deg, #1a1a1a 0%, #374151 100%)' }}
-            animate={{
-              x: [0, -70, 0],
-              y: [0, -50, 0],
-              scale: [1, 1.15, 1],
+          <div
+            className="absolute bottom-[5%] -right-[10%] w-[440px] h-[440px] rounded-full"
+            style={{
+              background: 'linear-gradient(135deg, #1a1a1a 0%, #374151 100%)',
+              opacity: 0.14,
+              filter: 'blur(80px)',
+              animation: '_blob2 22s ease-in-out infinite',
+              willChange: 'transform',
             }}
-            transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-          />
-          <motion.div
-            className="absolute top-[40%] left-[40%] w-[350px] h-[350px] rounded-full blur-[100px] opacity-25"
-            style={{ background: 'linear-gradient(135deg, #F5A623 0%, #FFB74D 100%)' }}
-            animate={{
-              x: [0, 50, -30, 0],
-              y: [0, -40, 60, 0],
-              scale: [1, 1.1, 1.05, 1],
-            }}
-            transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
           />
         </div>
 
@@ -674,7 +692,7 @@ export default function Portfolio() {
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               className="text-5xl md:text-6xl lg:text-7xl font-black font-display mb-6 leading-tight"
             >
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-accent to-gray-900 animate-gradient-x">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-accent to-gray-900">
                 About Me
               </span>
             </motion.h2>
@@ -736,7 +754,7 @@ export default function Portfolio() {
               style={{ transformStyle: 'preserve-3d' }}
             >
               {/* Orange/Black gradient border */}
-              <div className="absolute inset-0 rounded-3xl p-[2px] bg-gradient-to-br from-accent via-gray-800 to-accent-light animate-gradient-x shadow-accent-md">
+              <div className="absolute inset-0 rounded-3xl p-[2px] bg-gradient-to-br from-accent via-gray-800 to-accent-light shadow-accent-md">
                 <div className="w-full h-full rounded-[22px] bg-white/90 backdrop-blur-2xl p-8 md:p-10 relative">
                   {/* Floating decorative badges */}
                   <motion.div
@@ -915,7 +933,7 @@ export default function Portfolio() {
                 whileHover={{ x: -10, y: -6, scale: 1.02 }}
                 className="relative group rounded-2xl overflow-hidden"
               >
-                <div className="absolute inset-0 rounded-2xl p-[2px] bg-gradient-to-br from-accent via-gray-900 to-accent-light animate-gradient-x opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="absolute inset-0 rounded-2xl p-[2px] bg-gradient-to-br from-accent via-gray-900 to-accent-light opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                   <div className="w-full h-full rounded-[22px] bg-white/90 backdrop-blur-xl" />
                 </div>
                 <div className="relative p-6 rounded-2xl bg-white/90 backdrop-blur-xl border border-gray-200/60 shadow-soft group-hover:shadow-soft-lg group-hover:border-accent/30 transition-all duration-500">
