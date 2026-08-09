@@ -866,7 +866,7 @@ export default function Portfolio() {
                       <p className="text-gray-800 font-bold mb-1">AIML Undergraduate</p>
                       <p className="text-gray-500 text-sm mb-3">Sahyadri College of Engineering and Management</p>
                       <div className="flex gap-2 flex-wrap">
-                        {['Artificial Intelligence & Machine Learning', '2022-2026'].map((tag, i) => (
+                        {['Artificial Intelligence & Machine Learning', '2023-2027'].map((tag, i) => (
                           <span key={i} className="text-xs font-semibold px-3 py-1 rounded-full border"
                             style={{
                               background: i === 1 ? 'rgba(0,0,0,0.03)' : 'rgba(71, 85, 105, 0.06)',
