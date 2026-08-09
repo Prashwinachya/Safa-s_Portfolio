@@ -863,7 +863,7 @@ export default function Portfolio() {
                       <h3 className="text-xl font-black font-display mb-2 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-accent-dark">
                         Education
                       </h3>
-                      <p className="text-gray-800 font-bold mb-1">CSE Undergraduate</p>
+                      <p className="text-gray-800 font-bold mb-1">AIML Undergraduate</p>
                       <p className="text-gray-500 text-sm mb-3">Sahyadri College of Engineering and Management</p>
                       <div className="flex gap-2 flex-wrap">
                         {['Computer Science', 'Engineering', '2022-2026'].map((tag, i) => (
