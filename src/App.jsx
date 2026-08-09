@@ -1054,7 +1054,7 @@ export default function Portfolio() {
 
               <div className="flex gap-4 justify-center flex-wrap">
                 <motion.a
-                  href="https://www.linkedin.com/in/safarasheed/"
+                  href="https://www.linkedin.com/in/safa-rasheed-26323b293/"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05, y: -4 }}
@@ -1064,7 +1064,7 @@ export default function Portfolio() {
                   LinkedIn
                 </motion.a>
                 <motion.a
-                  href="https://github.com/safarasheed"
+                  href="https://github.com/safarasheeed"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05, y: -4 }}
@@ -1104,7 +1104,7 @@ export default function Portfolio() {
           </p>
           <div className="flex gap-6 justify-center">
             <a
-              href="https://www.linkedin.com/in/safarasheed/"
+              href="https://www.linkedin.com/in/safa-rasheed-26323b293/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-accent transition-colors duration-300 font-semibold"
@@ -1112,7 +1112,7 @@ export default function Portfolio() {
               LinkedIn
             </a>
             <a
-              href="https://github.com/safarasheed"
+              href="https://github.com/safarasheeed"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-gray-900 transition-colors duration-300 font-semibold"
