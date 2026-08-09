@@ -285,10 +285,11 @@ export default function Portfolio() {
   ];
 
   const skills = [
-    { category: "Languages", items: ["C", "C++", "JavaScript", "Python (Flask)"] },
-    { category: "Frontend", items: ["HTML", "CSS"] },
-    { category: "Databases", items: ["MongoDB", "MySQL"] },
-    { category: "Tools", items: ["Docker"] }
+    { category: "Languages", items: ["Python", "C", "SQL", "Java (basics)"] },
+    { category: "Web & Backend", items: ["FastAPI", "Next.js", "REST APIs", "basic HTML/CSS"] },
+    { category: "ML / AI Systems", items: ["RAG pipelines", "pgvector", "Redis (caching)", "model quantization (GGUF)", "SHAP/LIME interpretability"] },
+    { category: "Databases & Infra", items: ["PostgreSQL", "Neon", "SQLAlchemy", "Vercel", "Git", "GitHub", "VS Code"] },
+    { category: "Coursework", items: ["DSA", "OOPS", "DBMS", "OS"] }
   ];
 
   const scrollToSection = (id) => {
