@@ -259,20 +259,28 @@ export default function Portfolio() {
 
   const projects = [
     {
-      title: "The PROTEGO",
-      description: "Mobile application is a smart personal safety app designed to provide quick assistance during emergencies. It allows users to manage emergency contacts, share live location, receive instant alerts from the wearable device, and securely store evidence such as audio and video recordings. Built with a simple and user-friendly interface, the app ensures fast communication, real-time monitoring, and reliable emergency response, making it an effective solution for enhancing personal safety.",
+      title: "A Multi-Modal Voice Liveness Detection Framework using Vocal Biomarkers",
+      description: "A Multi-Modal Voice Liveness Detection Framework using Vocal Biomarkers is an AI-based system that verifies whether a voice sample is from a live human or a spoofed recording. By analyzing vocal biomarkers and multiple speech characteristics, the framework enhances authentication security, improves spoof detection accuracy, and helps prevent voice-based identity fraud in real-time applications.",
       link: "#",
       github: "#",
       color: "from-gray-700 to-gray-900",
-      tags: ["React Native", "Firebase", "Wearable Integration", "Safety", "Real-time GPS"]
+      tags: ["Python", "Machine Learning", "Deep Learning", "Vocal Biomarkers"]
     },
     {
-      title: "InfoSnap",
+      title: "Smart Unified Project Recommendation System",
+      description: "The Smart Unified Project Recommendation System is a web-based platform thatrecommends suitable project ideas by integrating data from GitHub repositories, public datasets, and research papers through automated API extraction. It employs a machine learning model to analyze and classify projects into easy, intermediate, and difficult levels while also assigning novelty and rating scores.",
+      link: "#",
+      github: "#",
+      color: "from-gray-600 to-gray-800",
+      tags: ["React", "Web Scraping", "REST API", "Metadata Extraction", "Machine Learning"]
+    },
+    {
+      title: "PEER-LEARN : STUDY PARTNER FINDER",
       description: "Smart web application that provides instant previews for both keywords and URLs. It delivers concise definitions, extracts essential webpage metadata, and presents information in a clear, structured format. The application simplifies information retrieval, reduces search time, and enhances the user experience by providing quick insights without requiring users to open multiple links.",
       link: "#",
       github: "#",
       color: "from-gray-600 to-gray-800",
-      tags: ["React", "Web Scraping", "REST API", "Metadata Extraction", "Tailwind CSS"]
+      tags: ["React", "Web Scraping", "REST API", "Metadata Extraction", "Machine Learning"]
     }
   ];
 
@@ -319,7 +327,7 @@ export default function Portfolio() {
           }
           style={{
             boxShadow: isNavScrolled
-              ? '0 12px 30px -15px rgba(232, 119, 46, 0.25), 0 4px 12px -6px rgba(0, 0, 0, 0.06)'
+              ? '0 12px 30px -15px rgba(71, 85, 105, 0.25), 0 4px 12px -6px rgba(0, 0, 0, 0.06)'
               : '0 0px 0px rgba(0,0,0,0)',
           }}
         >
@@ -363,10 +371,10 @@ export default function Portfolio() {
                 {/* Name text */}
                 <div className="flex flex-col items-start leading-none">
                   <span className="font-black font-display tracking-wide text-base md:text-lg text-gray-900 group-hover:text-accent-dark transition-colors duration-300">
-                    Spandana Naik
+                    Safa Rasheed
                   </span>
                   <span className="hidden sm:block text-[10px] uppercase tracking-[0.18em] text-gray-400 font-semibold mt-1 group-hover:text-accent transition-colors duration-300">
-                    Portfolio • 2025
+                    Portfolio • 2026
                   </span>
                 </div>
               </motion.button>
@@ -388,11 +396,10 @@ export default function Portfolio() {
                     transition={{ duration: 0.55, delay: 0.3 + idx * 0.06 }}
                     whileHover={{ y: -2 }}
                     whileTap={{ y: 0, scale: 0.97 }}
-                    className={`relative group px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 flex items-center gap-2 ${
-                      activeSection === item.id
-                        ? 'bg-gradient-to-r from-accent to-accent-dark text-white shadow-md shadow-accent/30'
-                        : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100/70'
-                    }`}
+                    className={`relative group px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 flex items-center gap-2 ${activeSection === item.id
+                      ? 'bg-gradient-to-r from-accent to-accent-dark text-white shadow-md shadow-accent/30'
+                      : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100/70'
+                      }`}
                   >
                     <span className={activeSection === item.id ? 'text-white' : 'text-gray-400 group-hover:text-accent transition-colors duration-300'}>
                       {item.icon}
@@ -455,17 +462,15 @@ export default function Portfolio() {
                       exit={{ opacity: 0, x: -12 }}
                       transition={{ delay: idx * 0.05, duration: 0.3 }}
                       whileHover={{ x: 6 }}
-                      className={`w-full flex items-center gap-3.5 px-4 py-3.5 rounded-2xl text-left transition-all duration-200 group ${
-                        activeSection === item.id
-                          ? 'bg-gradient-to-r from-accent to-accent-dark text-white shadow-accent-md'
-                          : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-                      }`}
+                      className={`w-full flex items-center gap-3.5 px-4 py-3.5 rounded-2xl text-left transition-all duration-200 group ${activeSection === item.id
+                        ? 'bg-gradient-to-r from-accent to-accent-dark text-white shadow-accent-md'
+                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                        }`}
                     >
-                      <div className={`w-9 h-9 rounded-xl flex items-center justify-center shadow-sm ${
-                        activeSection === item.id
-                          ? 'bg-white/18 text-white'
-                          : 'bg-accent/8 text-accent-dark group-hover:bg-accent/15 transition-colors'
-                      }`}>
+                      <div className={`w-9 h-9 rounded-xl flex items-center justify-center shadow-sm ${activeSection === item.id
+                        ? 'bg-white/18 text-white'
+                        : 'bg-accent/8 text-accent-dark group-hover:bg-accent/15 transition-colors'
+                        }`}>
                         {item.icon}
                       </div>
                       <span className="font-bold capitalize tracking-tight">{item.label}</span>
@@ -510,7 +515,7 @@ export default function Portfolio() {
           <div
             className="_blob absolute top-1/4 right-1/4 w-[420px] h-[420px] rounded-full"
             style={{
-              background: 'rgba(232, 119, 46, 0.05)',
+              background: 'rgba(71, 85, 105, 0.05)',
               filter: 'blur(80px)',
               animation: '_blobA 14s ease-in-out infinite',
             }}
@@ -539,7 +544,7 @@ export default function Portfolio() {
             className="mb-8 inline-flex items-center gap-2"
           >
             <span className="text-sm font-medium text-accent tracking-widest px-5 py-2.5 bg-accent/5 rounded-full border border-accent/15">
-              🚀 CSE UNDERGRAD AT SRINIVAS INSTITUTE OF TECHNOLOGY
+              🚀 CSE UNDERGRAD AT Sahyadri College of Engineering and Management
             </span>
           </motion.div>
 
@@ -559,7 +564,7 @@ export default function Portfolio() {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="block text-gray-900"
             >
-              Spandana <span className="font-black">Naik.</span>
+              Safa <span className="font-black">Rasheed.</span>
             </motion.span>
             <motion.span
               initial={{ opacity: 0, y: 30 }}
@@ -646,7 +651,7 @@ export default function Portfolio() {
           <div
             className="absolute top-[10%] -left-[10%] w-[400px] h-[400px] rounded-full"
             style={{
-              background: 'linear-gradient(135deg, #E8772E 0%, #F5A623 100%)',
+              background: 'linear-gradient(135deg, #475569 0%, #E2E8F0 100%)',
               opacity: 0.22,
               filter: 'blur(80px)',
               animation: '_blob1 18s ease-in-out infinite',
@@ -656,7 +661,7 @@ export default function Portfolio() {
           <div
             className="absolute bottom-[5%] -right-[10%] w-[440px] h-[440px] rounded-full"
             style={{
-              background: 'linear-gradient(135deg, #1a1a1a 0%, #374151 100%)',
+              background: 'linear-gradient(135deg, #0F172A 0%, #334155 100%)',
               opacity: 0.14,
               filter: 'blur(80px)',
               animation: '_blob2 22s ease-in-out infinite',
@@ -761,7 +766,7 @@ export default function Portfolio() {
                     animate={{ y: [0, -10, 0], rotate: [0, 5, 0] }}
                     transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
                     className="absolute -top-4 -right-4 px-4 py-2 rounded-full text-white text-xs font-bold shadow-accent-md"
-                    style={{ background: 'linear-gradient(135deg, #1a1a1a 0%, #374151 100%)' }}
+                    style={{ background: 'linear-gradient(135deg, #0F172A 0%, #334155 100%)' }}
                   >
                     <Heart className="w-3 h-3 inline mr-1 fill-accent" />
                     Tech Lover
@@ -774,7 +779,7 @@ export default function Portfolio() {
                     </div>
                     <h3 className="text-3xl md:text-4xl font-black font-display mb-4">
                       <span className="bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-accent-dark to-gray-900">
-                        Hey, I'm Spandana! 👋
+                        Hey, I'm Safa Rasheed! 👋
                       </span>
                     </h3>
                   </div>
@@ -782,7 +787,7 @@ export default function Portfolio() {
                   <div className="space-y-5">
                     <div className="flex gap-4">
                       <div className="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center shadow-soft-md"
-                        style={{ background: 'linear-gradient(135deg, #F5A623 0%, #E8772E 100%)' }}>
+                        style={{ background: 'linear-gradient(135deg, #E2E8F0 0%, #475569 100%)' }}>
                         <Sparkles className="w-5 h-5 text-white" />
                       </div>
                       <p className="text-gray-700 text-base md:text-lg leading-relaxed">
@@ -792,7 +797,7 @@ export default function Portfolio() {
 
                     <div className="flex gap-4">
                       <div className="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center shadow-soft-md"
-                        style={{ background: 'linear-gradient(135deg, #1f2937 0%, #111827 100%)' }}>
+                        style={{ background: 'linear-gradient(135deg, #1E293B 0%, #0F172A 100%)' }}>
                         <Brain className="w-5 h-5 text-white" />
                       </div>
                       <p className="text-gray-700 text-base md:text-lg leading-relaxed">
@@ -802,7 +807,7 @@ export default function Portfolio() {
 
                     <div className="flex gap-4">
                       <div className="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center shadow-soft-md"
-                        style={{ background: 'linear-gradient(135deg, #E8772E 0%, #D4641E 100%)' }}>
+                        style={{ background: 'linear-gradient(135deg, #475569 0%, #334155 100%)' }}>
                         <Rocket className="w-5 h-5 text-white" />
                       </div>
                       <p className="text-gray-700 text-base md:text-lg leading-relaxed">
@@ -850,7 +855,7 @@ export default function Portfolio() {
                       whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
                       transition={{ duration: 0.5 }}
                       className="flex-shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center shadow-soft-md"
-                      style={{ background: 'linear-gradient(135deg, #E8772E 0%, #1a1a1a 100%)' }}
+                      style={{ background: 'linear-gradient(135deg, #475569 0%, #0F172A 100%)' }}
                     >
                       <BookOpen className="w-7 h-7 text-white" />
                     </motion.div>
@@ -859,14 +864,14 @@ export default function Portfolio() {
                         Education
                       </h3>
                       <p className="text-gray-800 font-bold mb-1">CSE Undergraduate</p>
-                      <p className="text-gray-500 text-sm mb-3">Srinivas Institute of Technology</p>
+                      <p className="text-gray-500 text-sm mb-3">Sahyadri College of Engineering and Management</p>
                       <div className="flex gap-2 flex-wrap">
                         {['Computer Science', 'Engineering', '2022-2026'].map((tag, i) => (
                           <span key={i} className="text-xs font-semibold px-3 py-1 rounded-full border"
                             style={{
-                              background: i === 1 ? 'rgba(0,0,0,0.03)' : 'rgba(232, 119, 46, 0.06)',
-                              color: i === 1 ? '#1f2937' : '#D4641E',
-                              borderColor: i === 1 ? 'rgba(0,0,0,0.08)' : 'rgba(232, 119, 46, 0.2)'
+                              background: i === 1 ? 'rgba(0,0,0,0.03)' : 'rgba(71, 85, 105, 0.06)',
+                              color: i === 1 ? '#1E293B' : '#334155',
+                              borderColor: i === 1 ? 'rgba(0,0,0,0.08)' : 'rgba(71, 85, 105, 0.2)'
                             }}>
                             {tag}
                           </span>
@@ -892,7 +897,7 @@ export default function Portfolio() {
                       whileHover={{ scale: 1.1, rotate: 360 }}
                       transition={{ duration: 0.7 }}
                       className="flex-shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center shadow-soft-md"
-                      style={{ background: 'linear-gradient(135deg, #1f2937 0%, #374151 100%)' }}
+                      style={{ background: 'linear-gradient(135deg, #1E293B 0%, #334155 100%)' }}
                     >
                       <Target className="w-7 h-7 text-white" />
                     </motion.div>
@@ -943,7 +948,7 @@ export default function Portfolio() {
                       transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
                       whileHover={{ scale: 1.15 }}
                       className="flex-shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center shadow-soft-md"
-                      style={{ background: 'linear-gradient(135deg, #E8772E 0%, #D4641E 100%)' }}
+                      style={{ background: 'linear-gradient(135deg, #475569 0%, #334155 100%)' }}
                     >
                       <Zap className="w-7 h-7 text-white fill-white" />
                     </motion.div>
@@ -1049,7 +1054,7 @@ export default function Portfolio() {
 
               <div className="flex gap-4 justify-center flex-wrap">
                 <motion.a
-                  href="https://www.linkedin.com/in/spandana02/"
+                  href="https://www.linkedin.com/in/safarasheed/"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05, y: -4 }}
@@ -1059,7 +1064,7 @@ export default function Portfolio() {
                   LinkedIn
                 </motion.a>
                 <motion.a
-                  href="https://github.com/spandana-2"
+                  href="https://github.com/safarasheed"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05, y: -4 }}
@@ -1069,7 +1074,7 @@ export default function Portfolio() {
                   GitHub
                 </motion.a>
                 <motion.a
-                  href="mailto:spandananaik027@gmail.com"
+                  href="mailto:safarasheed209@gmail.com"
                   whileHover={{ scale: 1.05, y: -4 }}
                   whileTap={{ scale: 0.95 }}
                   className="px-8 py-4 bg-accent text-white rounded-lg font-semibold hover:bg-accent-dark shadow-accent-sm hover:shadow-accent-md transition-all duration-300"
@@ -1078,7 +1083,7 @@ export default function Portfolio() {
                   Email
                 </motion.a>
                 <motion.a
-                  href="tel:+917760105082"
+                  href="tel:+918714050330"
                   whileHover={{ scale: 1.05, y: -4 }}
                   whileTap={{ scale: 0.95 }}
                   className="px-8 py-4 border border-gray-300 text-gray-700 rounded-lg font-semibold hover:border-accent hover:text-accent hover:shadow-accent-sm transition-all duration-300"
@@ -1095,11 +1100,11 @@ export default function Portfolio() {
       <footer className="border-t border-gray-100 py-8 px-6 lg:px-12 bg-gray-50/50">
         <div className="max-w-6xl mx-auto text-center">
           <p className="text-gray-400 text-sm mb-4">
-            © 2026 Spandana Naik. All rights reserved.
+            © 2026 Safa Rasheed. All rights reserved.
           </p>
           <div className="flex gap-6 justify-center">
             <a
-              href="https://www.linkedin.com/in/spandana02/"
+              href="https://www.linkedin.com/in/safarasheed/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-accent transition-colors duration-300 font-semibold"
@@ -1107,7 +1112,7 @@ export default function Portfolio() {
               LinkedIn
             </a>
             <a
-              href="https://github.com/spandana-2"
+              href="https://github.com/safarasheed"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-gray-900 transition-colors duration-300 font-semibold"
@@ -1115,7 +1120,7 @@ export default function Portfolio() {
               GitHub
             </a>
             <a
-              href="mailto:spandananaik027@gmail.com"
+              href="mailto:safarasheed209@gmail.com"
               className="text-gray-400 hover:text-accent transition-colors duration-300 font-semibold"
             >
               Email
