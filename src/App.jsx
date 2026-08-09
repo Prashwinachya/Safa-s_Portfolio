@@ -608,7 +608,7 @@ export default function Portfolio() {
             <MagneticButton onClick={() => scrollToSection('contact')}>
               Get In Touch
             </MagneticButton>
-            <MagneticButton onClick={() => window.open('https://drive.google.com/file/d/1pna4BfTDEsVBKvuDa4jEwgLUWS-Yusr3/view?usp=sharing', '_blank')}>
+            <MagneticButton onClick={() => window.open('https://drive.google.com/file/d/1RaTgSCqVUnGZiigdhAPhN4G7zoydUDOh/view?usp=sharing', '_blank')}>
               Resume
               <ExternalLink size={16} />
             </MagneticButton>
